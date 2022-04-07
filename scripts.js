@@ -2,6 +2,7 @@
 var computersChosenResult;
 var userIsWinner;
 var userAttempts = 0;
+const maxAttempts = 5;
 
 function rockClicked(){
     calcWinner(0, computerSelection());
@@ -22,15 +23,15 @@ function scissorsClicked(){
 
 function gameResultUpdate(isWinner){
     if(isWinner==1){
-        document.getElementById("idPlayResult").innerHTML="Attempt #" + userAttempts +" (of 3): Well done, you win ! Computer chose " + computersChosenResult;
+        document.getElementById("idPlayResult").innerHTML="Attempt #" + userAttempts +" (of "+maxAttempts+"): Well done, you win ! Computer chose " + computersChosenResult;
         document.getElementById("idPlayResult").style.backgroundColor = "chartreuse";
     }
     else if(isWinner==0){
-        document.getElementById("idPlayResult").innerHTML="Attempt #" + userAttempts +" (of 3): Its a draw, computer chose " + computersChosenResult;
+        document.getElementById("idPlayResult").innerHTML="Attempt #" + userAttempts +" (of "+maxAttempts+"): Its a draw, computer chose " + computersChosenResult;
         document.getElementById("idPlayResult").style.backgroundColor = "orange";
     }
     else{
-        document.getElementById("idPlayResult").innerHTML="Attempt #" + userAttempts +" (of 3): Sorry, you lost, computer chose " + computersChosenResult;
+        document.getElementById("idPlayResult").innerHTML="Attempt #" + userAttempts +" (of "+maxAttempts+"): Sorry, you lost, computer chose " + computersChosenResult;
         document.getElementById("idPlayResult").style.backgroundColor = "crimson";
     }
 
@@ -78,7 +79,7 @@ function calcWinner(userSelection, computerSelection){
         userIsWinner = 2;
     }
 
-    if(userAttempts>=3 || userIsWinner==1){
+    if(userAttempts>=maxAttempts || userIsWinner==1){
         document.getElementById("idRockButton").disabled=true;
         document.getElementById("idPaperButton").disabled=true;
         document.getElementById("idScissorsButton").disabled=true;
