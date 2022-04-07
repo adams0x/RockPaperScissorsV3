@@ -1,8 +1,10 @@
 
 var computersChosenResult;
 var userIsWinner;
+var guesses = [];
 var userAttempts = 0;
 const maxAttempts = 5;
+
 
 function rockClicked(){
     calcWinner(0, computerSelection());
@@ -35,6 +37,11 @@ function gameResultUpdate(isWinner){
         document.getElementById("idPlayResult").style.backgroundColor = "crimson";
     }
 
+    if(userAttempts>=maxAttempts || userIsWinner==1){
+        document.getElementById("idPlayResult").innerHTML+="<br><br>";
+        document.getElementById("idPlayResult").innerHTML+="Your choices were:" + guesses.toString();
+    }
+
 }
 
 
@@ -59,6 +66,19 @@ function calcWinner(userSelection, computerSelection){
     }
     else{
         computersChosenResult="some invalid choice!";
+    }
+
+    if(userSelection == 0){
+        guesses.push(" Rock");
+    }
+    else if(userSelection == 1){
+        guesses.push(" Paper");
+    }
+    else if(userSelection == 2){
+        guesses.push(" Scissors");
+    }
+    else{
+        guesses.push(" Invalid!");
     }
 
 
